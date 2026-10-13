@@ -1,18 +1,18 @@
 #include <Arduino.h>
+#include "../lib/blink/blink.h"
 
-// put function declarations here:
-int myFunction(int, int);
+// Op de meeste ESP32 DevKit boards is GPIO 2 de ingebouwde LED
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 2
+#endif
+
+Blink statusLed(LED_BUILTIN);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+    Serial.begin(115200);
+    Serial.println("ESP32 gestart - Blink begint...");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    statusLed.now();
 }
